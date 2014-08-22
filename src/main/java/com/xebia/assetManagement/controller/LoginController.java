@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
 @RequestMapping
 public class LoginController {
 
-
     @Autowired
     private UserService userService;
 

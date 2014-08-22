@@ -14,9 +14,13 @@
        http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <context:component-scan
-            base-package="com.xebia.assetManagement.controller,com.xebia.assetManagement.web, com.xebia.assetManagement.model,
-            com.xebia.assetManagement.persistence, com.xebia.assetManagement.service"/>
+            base-package="com.xebia.assetManagement.controller,com.xebia.assetManagement.web,com.xebia.assetManagement.model,
+            com.xebia.assetManagement.persistence.impl,com.xebia.assetManagement.service.impl"/>
     <context:annotation-config/>
+
+    <context:component-scan
+            base-package="com.example.persistence.impl,com.example.service.impl,com.example.validator,com.example.web,com.example.controller" />
+    <context:annotation-config />
 
     <mvc:annotation-driven/>
     <tx:annotation-driven transaction-manager="transactionManager"/>

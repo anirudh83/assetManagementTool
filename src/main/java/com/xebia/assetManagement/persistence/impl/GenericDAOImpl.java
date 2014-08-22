@@ -5,6 +5,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Example;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -12,13 +13,10 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-/**
- * Created by anirudh on 22/08/14.
- */
 
 @Repository
-public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T, ID> {
-
+public abstract class GenericDAOImpl<T, ID extends Serializable> implements
+        GenericDAO<T, ID> {
 
     private Class<T> persistenceClass;
     private Session session;
@@ -53,24 +51,30 @@ public class GenericDAOImpl<T, ID extends Serializable> implements GenericDAO<T,
     }
 
     @Override
-    public List<T> findAll() {
-        return findByCriteria();
-    }
-
-    @Override
-    public List<T> findByExample(T exampleInstance, String... excludeProperty) {
-        return null;
-    }
-
-    @Override
     public T makePersistant(T entity) {
         getSession().saveOrUpdate(entity);
         return entity;
     }
 
-    @Override
     public void delete(T entity) {
         getSession().delete(entity);
+    }
+
+    @Override
+    public List<T> findAll() {
+        return findByCriteria();
+    }
+
+    @Override
+    public List<T> findByExample(T exampleInstance,
+                                 String... excludeProperty) {
+        Criteria criteria = getSession().createCriteria(getPersistenceClass());
+        Example example = Example.create(exampleInstance);
+        for (String exclude : excludeProperty) {
+            example.excludeProperty(exclude);
+        }
+        criteria.add(example);
+        return criteria.list();
     }
 
     @Override
