@@ -1,6 +1,7 @@
 package com.xebia.assetManagement.service;
 
 import com.xebia.assetManagement.model.Asset;
+import com.xebia.assetManagement.model.User;
 
 import java.util.List;
 
@@ -9,6 +10,6 @@ import java.util.List;
  */
 public interface AssetService {
     List<Asset> getAllAssets();
-    List<Asset> getAllAssets(String username);
+    public List<Asset> getAllAssets(User user);
     Asset createAsset(Asset asset);
 }

@@ -15,11 +15,15 @@ function openCreateAssetForm(){
 }
 
 function logout(){
-	window.open('logout','_self',false);
+	window.open('/assetManagementTool/logout','_self',false);
 }
 
 function openCreateUserForm(){
     window.open('/assetManagementTool/users/createuser','_self',false);
+}
+
+function viewAllotedAssets(){
+    window.open('/assetManagementTool/users', '_self',false);
 }
 
 </script>
@@ -28,7 +32,7 @@ function openCreateUserForm(){
 <div class="container-fluid">
     <form class="bs-docs-example form-inline">
     <fieldset>
-<legend>Welcome to Xebia Asset Management Tool, ${user.email}</legend>
+<legend>Welcome to Xebia Asset Management Tool, ${user.firstName}</legend>
 <c:if test="${user.isAdmin}">
 <h3>ADMIN TASKS</h3>
 <input type="button" class="btn btn-primary btn-large" value="all Open Requests" onclick="javascript:openViewRequests()">

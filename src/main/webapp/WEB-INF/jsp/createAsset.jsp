@@ -14,11 +14,7 @@
 <body>
 <script type="text/javascript">
 function backPage(){
-	if('${fromPage}'=='view'){
-		window.open('/TaskMaster/task/view','_self',false);
-	}else{
-	 window.open('/TaskMaster/task/home','_self',false);
-	}
+    	window.open('/assetManagementTool/users/home','_self',false);
 }
     
 jQuery(function()
@@ -42,7 +38,8 @@ jQuery(function()
 <form:errors class="text-error" path="modelNumber" /></td></tr>
 <tr><td>Enter asset type :<form:input path="type" required="true"/>
 <form:errors class="text-error" path="type" /></td></tr>
-
+<tr><td>Enter asset type :<form:input path="brandName" required="true"/>
+<form:errors class="text-error" path="brandName" /></td></tr>
 <tr><td>Enter Assigned date (dd/mm/yyyy):
 <form:input path="assignedDate" class="datepicker" data-date-format="dd/mm/yyyy" readonly="true" type="text" required="true"/>
 <form:errors class="text-error" path="assignedDate" /></td></tr>

@@ -11,7 +11,12 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     </filter>
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
-        <url-pattern>/asset/*</url-pattern>
+        <url-pattern>/assets/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>loginFilter</filter-name>
+        <url-pattern>/users/*</url-pattern>
     </filter-mapping>
 
     <servlet>

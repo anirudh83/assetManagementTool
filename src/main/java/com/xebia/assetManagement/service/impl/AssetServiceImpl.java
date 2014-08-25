@@ -1,6 +1,7 @@
 package com.xebia.assetManagement.service.impl;
 
 import com.xebia.assetManagement.model.Asset;
+import com.xebia.assetManagement.model.User;
 import com.xebia.assetManagement.persistence.AssetPersistence;
 import com.xebia.assetManagement.service.AssetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +26,8 @@ public class AssetServiceImpl implements AssetService {
     }
 
     @Override
-    public List<Asset> getAllAssets(String username) {
-        return assetPersistence.getAllAssets(username);
+    public List<Asset> getAllAssets(User user) {
+        return assetPersistence.getAllAssets(user);
     }
 
     @Override

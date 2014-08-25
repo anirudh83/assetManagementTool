@@ -1,6 +1,7 @@
 package com.xebia.assetManagement.persistence;
 
 import com.xebia.assetManagement.model.Asset;
+import com.xebia.assetManagement.model.User;
 
 import java.util.List;
 
@@ -9,5 +10,5 @@ import java.util.List;
  */
 public interface AssetPersistence extends GenericDAO<Asset, Long> {
     List<Asset> getAllAssets();
-    List<Asset> getAllAssets(String username);
+    List<Asset> getAllAssets(User user);
 }

@@ -1,7 +1,9 @@
 package com.xebia.assetManagement.controller;
 
 import com.xebia.assetManagement.form.UserForm;
+import com.xebia.assetManagement.model.Asset;
 import com.xebia.assetManagement.model.User;
+import com.xebia.assetManagement.service.AssetService;
 import com.xebia.assetManagement.service.UserService;
 import com.xebia.assetManagement.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 /**
  * Created by anirudh on 25/08/14.
@@ -27,6 +30,9 @@ public class UserController {
     @Autowired
     private UserValidator userValidator;
 
+    @Autowired
+    private AssetService assetService;
+
     @RequestMapping(value = "/createuser", method = RequestMethod.GET)
     public String showCreateUserPage(Model model) {
         UserForm user = new UserForm();
@@ -36,8 +42,8 @@ public class UserController {
 
     @RequestMapping(method = RequestMethod.POST)
     public String createUser(@ModelAttribute("user") UserForm user,
-                             BindingResult errors,Model model,HttpSession session) {
-        User loggedInUser = (User)session.getAttribute("user");
+                             BindingResult errors, Model model, HttpSession session) {
+        User loggedInUser = (User) session.getAttribute("user");
 
         userValidator.validate(user, errors);
 
@@ -45,7 +51,7 @@ public class UserController {
         if (!errors.hasErrors()) {
             userService.createUser(populateUserFromForm(user));
             model.addAttribute("sucessmsg", "User was created Successfully");
-            model.addAttribute("user",loggedInUser);
+            model.addAttribute("user", loggedInUser);
             return "home";
         } else {
             return "createUser";
@@ -69,6 +75,15 @@ public class UserController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public String showHomePage() {
         return "home";
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public String showUserDetails(Model model, HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        List<Asset> assets = assetService.getAllAssets(user);
+        System.out.println("********* number of assets found for user " + user.getEmail() + " " + assets.size());
+        model.addAttribute("assets", assets);
+        return "viewUserAssets";
     }
 
 }
