@@ -15,12 +15,9 @@
 
     <context:component-scan
             base-package="com.xebia.assetManagement.controller,com.xebia.assetManagement.web,com.xebia.assetManagement.model,
-            com.xebia.assetManagement.persistence.impl,com.xebia.assetManagement.service.impl"/>
+            com.xebia.assetManagement.persistence.impl,com.xebia.assetManagement.service.impl, com.xebia.assetManagement.validator"/>
     <context:annotation-config/>
 
-    <context:component-scan
-            base-package="com.example.persistence.impl,com.example.service.impl,com.example.validator,com.example.web,com.example.controller" />
-    <context:annotation-config />
 
     <mvc:annotation-driven/>
     <tx:annotation-driven transaction-manager="transactionManager"/>
@@ -45,12 +42,14 @@
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="com.example.model"/>
+        <property name="packagesToScan" value="com.xebia.assetManagement.model"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
                 <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.hbm2ddl.import_files">classpath:import.sql</prop>
+                <prop key="hibernate.id.new_generator_mappings">true</prop>
             </props>
         </property>
     </bean>

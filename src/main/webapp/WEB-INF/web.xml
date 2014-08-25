@@ -4,7 +4,7 @@
 http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
     <display-name>Asset Management Tool</display-name>
-     <!--
+
     <filter>
         <filter-name>loginFilter</filter-name>
         <filter-class>com.xebia.assetManagement.web.LoginFilter</filter-class>
@@ -13,7 +13,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
         <filter-name>loginFilter</filter-name>
         <url-pattern>/asset/*</url-pattern>
     </filter-mapping>
-    -->
+
     <servlet>
         <servlet-name>mvc-dispatcher</servlet-name>
         <servlet-class>

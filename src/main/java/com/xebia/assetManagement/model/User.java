@@ -1,10 +1,10 @@
 package com.xebia.assetManagement.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 /**
  * Created by anirudh on 22/08/14.
@@ -19,17 +19,71 @@ public class User {
     private String firstName;
     private String lastName;
     private String email;
+    private String employeeId;
     private String mobileNum;
     private String password;
+    private boolean isAdmin;
+    private List<Asset> assets = new ArrayList<Asset>(0);
 
-    private List<Asset> assetList = new ArrayList<Asset>();
+    public User() {
 
+    }
+
+    public User(Long id, String firstName, String lastName, String email, String mobileNum, String password, List<Asset> assets) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.mobileNum = mobileNum;
+        this.password = password;
+        this.assets = assets;
+    }
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    @Column(name = "id", unique = true, nullable = false)
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+
+    @Column(name = "emailAddress")
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Column(name = "mobileNumber")
+    public String getMobileNum() {
+        return mobileNum;
+    }
+
+    public void setMobileNum(String mobileNum) {
+        this.mobileNum = mobileNum;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "assignedTo", cascade = CascadeType.ALL)
+    public List<Asset> getAssets() {
+        return assets;
+    }
+
+    public void setAssets(List<Asset> assets) {
+        this.assets = assets;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstName() {
@@ -48,35 +102,21 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getEmail() {
-        return email;
+    @Column(name="isAdmin")
+    public boolean getIsAdmin() {
+        return isAdmin;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 
-    public String getMobileNum() {
-        return mobileNum;
+    @Column(name="employeeId")
+    public String getEmployeeId() {
+        return employeeId;
     }
 
-    public void setMobileNum(String mobileNum) {
-        this.mobileNum = mobileNum;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Asset> getAssetList() {
-        return assetList;
-    }
-
-    public void setAssetList(List<Asset> assetList) {
-        this.assetList = assetList;
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
 }

@@ -19,6 +19,7 @@ public class Asset {
     private String modelNumber;
     private String type;
     private String description;
+    private String brandName;
     private User assignedTo;
     private Date assignedDate;
 
@@ -33,6 +34,7 @@ public class Asset {
         this.id = id;
     }
 
+    @Column(name="serialNumber")
     public String getSerialNumber() {
         return serialNumber;
     }
@@ -41,6 +43,7 @@ public class Asset {
         this.serialNumber = serialNumber;
     }
 
+    @Column(name="name")
     public String getName() {
         return name;
     }
@@ -49,6 +52,7 @@ public class Asset {
         this.name = name;
     }
 
+    @Column(name="modelNumber")
     public String getModelNumber() {
         return modelNumber;
     }
@@ -57,6 +61,7 @@ public class Asset {
         this.modelNumber = modelNumber;
     }
 
+    @Column(name="type")
     public String getType() {
         return type;
     }
@@ -65,6 +70,7 @@ public class Asset {
         this.type = type;
     }
 
+    @Column(name="description")
     public String getDescription() {
         return description;
     }
@@ -73,6 +79,8 @@ public class Asset {
         this.description = description;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "assignedToUserId")
     public User getAssignedTo() {
         return assignedTo;
     }
@@ -81,11 +89,21 @@ public class Asset {
         this.assignedTo = assignedTo;
     }
 
+    @Column(name="assignedDate")
     public Date getAssignedDate() {
         return assignedDate;
     }
 
     public void setAssignedDate(Date assignedDate) {
         this.assignedDate = assignedDate;
+    }
+
+    @Column(name="brandName")
+    public String getBrandName() {
+        return brandName;
+    }
+
+    public void setBrandName(String brandName) {
+        this.brandName = brandName;
     }
 }

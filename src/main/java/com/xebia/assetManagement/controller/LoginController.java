@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.util.logging.Logger;
 
 /**
  * Created by anirudh on 22/08/14.
@@ -18,6 +19,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping
 public class LoginController {
+
+    private static final Logger LOGGER = Logger.getLogger(LoginController.class.getName());
 
     @Autowired
     private UserService userService;
@@ -32,6 +35,7 @@ public class LoginController {
             return "home";
         }else{
             model.addAttribute("error", "Incorrect username or password, Please try again!");
+            LOGGER.info("**** USER NOT LOGGED IN ***");
             return "login";
         }
 
@@ -48,5 +52,10 @@ public class LoginController {
     @RequestMapping(value="/showlogin",method=RequestMethod.GET)
     public String showloginPage(){
         return "login";
+    }
+
+    @RequestMapping(value="/showContact", method=RequestMethod.GET)
+    public String showContactPage(){
+        return "contact";
     }
 }
