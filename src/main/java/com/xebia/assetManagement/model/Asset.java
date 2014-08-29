@@ -22,6 +22,7 @@ public class Asset {
     private String brandName;
     private User assignedTo;
     private Date assignedDate;
+    private Date warrantyExpiryDate;
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -79,7 +80,7 @@ public class Asset {
         this.description = description;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "assignedToUserId")
     public User getAssignedTo() {
         return assignedTo;
@@ -105,5 +106,14 @@ public class Asset {
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+
+    @Column(name="warrantyExpiryDate")
+    public Date getWarrantyExpiryDate() {
+        return warrantyExpiryDate;
+    }
+
+    public void setWarrantyExpiryDate(Date warrantyExpiryDate) {
+        this.warrantyExpiryDate = warrantyExpiryDate;
     }
 }

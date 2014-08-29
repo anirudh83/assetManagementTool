@@ -6,12 +6,10 @@ import com.xebia.assetManagement.service.AssetService;
 import com.xebia.assetManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -30,34 +28,46 @@ public class AssetController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/showCreate", method = RequestMethod.GET)
     public String showCreateAssetPage(Model model) {
-        model.addAttribute("asset",new Asset());
+        model.addAttribute("asset", new Asset());
         return "createAsset";
     }
 
 
-    @RequestMapping(method = RequestMethod.POST)
+    @RequestMapping(value="/showEdit/{id}",method=RequestMethod.GET)
+    public String showEditAssetPage(@PathVariable("id") String id,Model model){
+        Asset asset = assetService.findById(Long.decode(id));
+        asset.getAssignedTo();
+        model.addAttribute("asset",asset);
+        return "createAsset";
+    }
+
+    @RequestMapping(value = "/create",method = RequestMethod.POST)
     public String createAsset(@ModelAttribute("asset") Asset asset, BindingResult errors,
-                              Model model,@RequestParam(value="userId",required=false)String userId,HttpSession session) {
+                              Model model, @RequestParam(value = "userId", required = false) String userId, HttpSession session) {
         Long userIdInt = Long.valueOf(userId);
-        User user = (User)session.getAttribute("user");
+        User user = (User) session.getAttribute("user");
         User assignedUser = userService.getUserById(userIdInt);
-        if(userIdInt==0){
-            assignedUser=user;
+        if (userIdInt == 0) {
+            assignedUser = user;
         }
         asset.setAssignedTo(assignedUser);
         if (!errors.hasErrors()) {
             assetService.createAsset(asset);
             model.addAttribute("sucessmsg", "Asset was created and assigned Successfully");
-            return "home";
+            User assignedTo = asset.getAssignedTo();
+            assignedTo.getFirstName();
+            model.addAttribute("asset", asset);
+            model.addAttribute("assignedUser", assignedTo);
+            return "reviewAsset";
         } else {
             return "createAsset";
         }
     }
 
     @ModelAttribute
-    public void populateUsers(Model model){
+    public void populateUsers(Model model) {
         List<User> users = userService.getUsers();
         model.addAttribute("users", users);
     }

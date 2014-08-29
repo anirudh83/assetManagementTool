@@ -22,7 +22,7 @@ jQuery(function()
 	jQuery('.datepicker').datepicker();
 });
 </script>
-<form:form method="post" action="/assetManagementTool/assets" commandName="asset">
+<form:form method="post" action="/assetManagementTool/assets/create" commandName="asset">
 <div class="container-fluid">
 	<table class="table">
 
@@ -38,7 +38,7 @@ jQuery(function()
 <form:errors class="text-error" path="modelNumber" /></td></tr>
 <tr><td>Enter asset type :<form:input path="type" required="true"/>
 <form:errors class="text-error" path="type" /></td></tr>
-<tr><td>Enter asset type :<form:input path="brandName" required="true"/>
+<tr><td>Enter brand Name :<form:input path="brandName" required="true"/>
 <form:errors class="text-error" path="brandName" /></td></tr>
 <tr><td>Enter Assigned date (dd/mm/yyyy):
 <form:input path="assignedDate" class="datepicker" data-date-format="dd/mm/yyyy" readonly="true" type="text" required="true"/>
@@ -46,7 +46,7 @@ jQuery(function()
 <tr><td>Assign Asset to :<select name="userId">
 <option value="0">Self</option>
 <c:forEach items="${users}" var="user">
-<option value="${user.id}">${user.firstName}</option>
+<option value="${user.id}">${user.firstName} ${user.lastName} - ${user.employeeId}</option>
 </c:forEach>
 </select></tr>
 <tr><td><input type="submit" class="btn btn-success btn-small" value="Submit">

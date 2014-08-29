@@ -9,6 +9,17 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
         <filter-name>loginFilter</filter-name>
         <filter-class>com.xebia.assetManagement.web.LoginFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>hibernateOpenSessionInViewFilter</filter-name>
+        <filter-class>com.xebia.assetManagement.web.HibernateOpenSessionInViewFilter</filter-class>
+    </filter>
+
+    <filter>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate3.support.OpenSessionInViewFilter</filter-class>
+    </filter>
+
+
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
         <url-pattern>/assets/*</url-pattern>
@@ -17,6 +28,17 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
     <filter-mapping>
         <filter-name>loginFilter</filter-name>
         <url-pattern>/users/*</url-pattern>
+    </filter-mapping>
+
+
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>/assets/create/*</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>OpenSessionInViewFilter</filter-name>
+        <url-pattern>/assets/showEdit/*</url-pattern>
     </filter-mapping>
 
     <servlet>

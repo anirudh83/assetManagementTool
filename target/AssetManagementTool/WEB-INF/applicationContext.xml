@@ -15,7 +15,8 @@
 
     <context:component-scan
             base-package="com.xebia.assetManagement.controller,com.xebia.assetManagement.web,com.xebia.assetManagement.model,
-            com.xebia.assetManagement.persistence.impl,com.xebia.assetManagement.service.impl, com.xebia.assetManagement.validator"/>
+            com.xebia.assetManagement.persistence.impl,com.xebia.assetManagement.service.impl, com.xebia.assetManagement.validator,
+            com.xebia.assetManagement.web"/>
     <context:annotation-config/>
 
 

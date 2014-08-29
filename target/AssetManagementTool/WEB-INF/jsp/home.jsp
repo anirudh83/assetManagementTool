@@ -11,7 +11,7 @@ function openViewTasks(){
 }
 
 function openCreateAssetForm(){
-	 window.open('/assetManagementTool/assets/create','_self',false);
+	 window.open('/assetManagementTool/assets/showCreate','_self',false);
 }
 
 function logout(){

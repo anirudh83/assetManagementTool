@@ -12,4 +12,5 @@ public interface AssetService {
     List<Asset> getAllAssets();
     public List<Asset> getAllAssets(User user);
     Asset createAsset(Asset asset);
+    Asset findById(Long id);
 }

@@ -34,4 +34,9 @@ public class AssetServiceImpl implements AssetService {
     public Asset createAsset(Asset asset) {
         return assetPersistence.makePersistant(asset);
     }
+
+    @Override
+    public Asset findById(Long id) {
+        return assetPersistence.findById(id);
+    }
 }
