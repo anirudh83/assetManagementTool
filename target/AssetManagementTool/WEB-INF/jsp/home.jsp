@@ -11,19 +11,19 @@ function openViewTasks(){
 }
 
 function openCreateAssetForm(){
-	 window.open('/assetManagementTool/assets/showCreate','_self',false);
+	 window.open('assets/showCreate','_self',false);
 }
 
 function logout(){
-	window.open('/assetManagementTool/logout','_self',false);
+	window.open('logout','_self',false);
 }
 
 function openCreateUserForm(){
-    window.open('/assetManagementTool/users/createuser','_self',false);
+    window.open('users/createuser','_self',false);
 }
 
 function viewAllotedAssets(){
-    window.open('/assetManagementTool/users', '_self',false);
+    window.open('users', '_self',false);
 }
 
 </script>

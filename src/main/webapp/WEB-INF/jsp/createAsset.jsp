@@ -22,7 +22,7 @@ jQuery(function()
 	jQuery('.datepicker').datepicker();
 });
 </script>
-<form:form method="post" action="/assetManagementTool/assets/create" commandName="asset">
+<form:form method="post" action="create" commandName="asset">
 <div class="container-fluid">
 	<table class="table">
 

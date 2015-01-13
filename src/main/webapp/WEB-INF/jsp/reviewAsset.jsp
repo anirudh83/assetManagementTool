@@ -12,11 +12,11 @@
 <script type="text/javascript" src="<c:url value="/js/jquery-1.9.1.min.js"/>"></script>
 <script type="text/javascript">
 function gotoHomePage(){
-	window.open('/assetManagementTool/users/home','_self',false);
+	window.open('users/home','_self',false);
 }
 
 function editAsset(assetId){
-	window.open('/assetManagementTool/assets/showEdit/'+assetId,'_self',false);
+	window.open('showEdit/'+assetId,'_self',false);
 }
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

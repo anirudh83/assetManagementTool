@@ -12,13 +12,13 @@
 
 <script type="text/javascript">
 function gotoHomePage(){
-	window.open('/assetManagementTool/users/home','_self',false);
+	window.open('users/home','_self',false);
 }
 </script>
 </head>
 <body>
 <div align="center">
-<form:form class="form-horizontal"  method="post" commandName="user" action="/assetManagementTool/users">
+<form:form class="form-horizontal"  method="post" commandName="user" action="users">
 <table>
 <tr><td>First Name :</td>
 <td><form:input path="firstName" placeholder="Enter your first name" required="true" />

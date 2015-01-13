@@ -25,50 +25,50 @@
 
     <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location">
-            <value>/properties/database.properties</value>
-            <!--  <value>/properties/database.dev.properties</value>      -->
-        </property>
-    </bean>
+             <value>/properties/database.properties</value>
+            <!--    <value>/properties/database.ebs.properties</value>    -->
+       </property>
+   </bean>
 
 
-    <bean id="dataSource"
-          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driverClassName}"/>
-        <property name="url" value="${jdbc.url}"/>
-        <property name="username" value="${jdbc.username}"/>
-        <property name="password" value="${jdbc.password}"/>
-    </bean>
+   <bean id="dataSource"
+         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+       <property name="driverClassName" value="${jdbc.driverClassName}"/>
+       <property name="url" value="${jdbc.url}"/>
+       <property name="username" value="${jdbc.username}"/>
+       <property name="password" value="${jdbc.password}"/>
+   </bean>
 
 
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-        <property name="dataSource" ref="dataSource"/>
-        <property name="packagesToScan" value="com.xebia.assetManagement.model"/>
-        <property name="hibernateProperties">
-            <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.hbm2ddl.auto">update</prop>
-                <prop key="hibernate.hbm2ddl.import_files">classpath:import.sql</prop>
-                <prop key="hibernate.id.new_generator_mappings">true</prop>
-            </props>
-        </property>
-    </bean>
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix">
-            <value>/WEB-INF/jsp/</value>
-        </property>
-        <property name="suffix">
-            <value>.jsp</value>
-        </property>
-    </bean>
-    <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename">
-            <value>language</value>
-        </property>
-    </bean>
-    <bean name="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-        <property name="sessionFactory" ref="sessionFactory"/>
-    </bean>
+   <bean id="sessionFactory"
+         class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+       <property name="dataSource" ref="dataSource"/>
+       <property name="packagesToScan" value="com.xebia.assetManagement.model"/>
+       <property name="hibernateProperties">
+           <props>
+               <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+               <prop key="hibernate.show_sql">true</prop>
+               <prop key="hibernate.hbm2ddl.auto">update</prop>
+               <prop key="hibernate.hbm2ddl.import_files">classpath:import.sql</prop>
+               <prop key="hibernate.id.new_generator_mappings">true</prop>
+           </props>
+       </property>
+   </bean>
+   <bean
+           class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       <property name="prefix">
+           <value>/WEB-INF/jsp/</value>
+       </property>
+       <property name="suffix">
+           <value>.jsp</value>
+       </property>
+   </bean>
+   <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+       <property name="basename">
+           <value>language</value>
+       </property>
+   </bean>
+   <bean name="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+       <property name="sessionFactory" ref="sessionFactory"/>
+   </bean>
 </beans>
